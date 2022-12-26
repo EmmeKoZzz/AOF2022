@@ -2,6 +2,16 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 2 Rock Paper Scissors", "Day 2 Rock Paper Scissors\Day 2 Rock Paper Scissors.csproj", "{BCF0688B-EE23-44AB-AEA7-3E3B9237279C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 3 Rucksack Reorganization", "Day 3 Rucksack Reorganization\Day 3 Rucksack Reorganization.csproj", "{1A39B544-A564-4022-BF67-5D0F99AE56DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 4 Camp Cleanup", "Day 4 Camp Cleanup\Day 4 Camp Cleanup.csproj", "{B421E4B2-8934-44D3-84B9-13CBA69D2D44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 5 Supply Stacks", "Day 5 Supply Stacks\Day 5 Supply Stacks.csproj", "{59DE2F85-14F2-4465-B7C9-7C3D13DB8A7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 6 Tuning Trouble", "Day 6 Tuning Trouble\Day 6 Tuning Trouble.csproj", "{832A1FAC-44CC-4512-9F99-FB2594E76CDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 7  No Space Left On Device", "Day 7  No Space Left On Device\Day 7  No Space Left On Device.csproj", "{E5E5855F-F996-4ADA-A877-8EEB08454113}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +22,25 @@ Global
 		{BCF0688B-EE23-44AB-AEA7-3E3B9237279C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCF0688B-EE23-44AB-AEA7-3E3B9237279C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCF0688B-EE23-44AB-AEA7-3E3B9237279C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A39B544-A564-4022-BF67-5D0F99AE56DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A39B544-A564-4022-BF67-5D0F99AE56DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A39B544-A564-4022-BF67-5D0F99AE56DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A39B544-A564-4022-BF67-5D0F99AE56DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B421E4B2-8934-44D3-84B9-13CBA69D2D44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B421E4B2-8934-44D3-84B9-13CBA69D2D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B421E4B2-8934-44D3-84B9-13CBA69D2D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B421E4B2-8934-44D3-84B9-13CBA69D2D44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59DE2F85-14F2-4465-B7C9-7C3D13DB8A7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59DE2F85-14F2-4465-B7C9-7C3D13DB8A7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59DE2F85-14F2-4465-B7C9-7C3D13DB8A7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59DE2F85-14F2-4465-B7C9-7C3D13DB8A7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{832A1FAC-44CC-4512-9F99-FB2594E76CDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{832A1FAC-44CC-4512-9F99-FB2594E76CDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{832A1FAC-44CC-4512-9F99-FB2594E76CDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{832A1FAC-44CC-4512-9F99-FB2594E76CDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5E5855F-F996-4ADA-A877-8EEB08454113}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5E5855F-F996-4ADA-A877-8EEB08454113}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5E5855F-F996-4ADA-A877-8EEB08454113}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5E5855F-F996-4ADA-A877-8EEB08454113}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
