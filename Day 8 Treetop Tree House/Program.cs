@@ -11,5 +11,6 @@ static class App
 
       Solution solution = new Solution(input);
       Console.WriteLine(solution.VisibleTrees);
+      Console.WriteLine(solution.HighestTreeScore);
    }
 }

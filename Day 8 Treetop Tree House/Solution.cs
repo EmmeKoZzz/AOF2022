@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace Day_8_Treetop_Tree_House;
 
 internal struct Tree
@@ -15,7 +13,6 @@ internal struct Tree
       Y = row;
    }
 }
-
 internal struct Cross
 {
    // N, E, S, W
@@ -28,6 +25,7 @@ public class Solution
 {
    private readonly Grid _treeMap;
    public readonly int VisibleTrees;
+   public int HighestTreeScore;
 
    public Solution(string[] input)
    {
@@ -45,15 +43,15 @@ public class Solution
 
    private bool VisibleTree(Tree currentTree)
    {
-
+      bool checkVisibility = false;
+      int treeScore = 1;
       for (int i = 0; i < Cross.Directions; i++)
       {
          int x = currentTree.X + Cross.Horizontal[i];
          int y = currentTree.Y + Cross.Vertical[i];
          int edge = Cross.Horizontal[i] + Cross.Vertical[i] > 0 ? _treeMap.Length : -1;
-
-         int count = 0;
          bool visibility = true;
+         int count = 0;
 
          while (x != edge && y != edge)
          {
@@ -68,9 +66,16 @@ public class Solution
             y += Cross.Vertical[i];
          }
 
+         treeScore *= count;
 
-         if (visibility) return true;
+         if (visibility) checkVisibility = true;
       }
+
+      if (treeScore > HighestTreeScore)
+         HighestTreeScore = treeScore;
+
+      if (checkVisibility)
+         return true;
 
       return false;
    }
