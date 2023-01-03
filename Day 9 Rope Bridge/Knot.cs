@@ -23,15 +23,13 @@ public struct Knot
     public bool StepTo(Knot head)
     {
         if (IsClose(head)) return false;
-        int x = X - head.X;
-        int y = Y - head.Y;
-        x /= Math.Abs(x);
-        y /= Math.Abs(y);
+        int x = head.X - X;
+        int y = head.Y - Y;
+        x /= x != 0 ? Math.Abs(x) : 1;
+        y /= y != 0 ? Math.Abs(y) : 1;
         Step(x,y);
         return true;
     }
-    
-
 
     public bool IsClose(Knot p)
     {
