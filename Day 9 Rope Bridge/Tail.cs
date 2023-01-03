@@ -26,14 +26,9 @@ public class Tail
 
    public void Move(Knot newHead)
    {
-      Knot prevHead = _head;
       _head = newHead;
-
       for (int i = 0; i < _tail.Length; i++)
-      {
-         if (!_tail[i].IsClose(GetHead(i)))
-            (_tail[i], prevHead) = (prevHead, _tail[i]); // llegar a esta mierda me llevo tiempo xD jajajaaj
-         else break;
-      }
+         if (!_tail[i].StepTo(GetHead(i)))
+            break;
    }
 }
