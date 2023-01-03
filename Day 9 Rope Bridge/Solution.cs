@@ -1,16 +1,15 @@
-using System.Diagnostics;
-
 namespace Day_9_Rope_Bridge;
 
 public class Solution
 {
-   public List<Point> TailSteps;
+   public readonly List<Knot> TailSteps;
 
-   public Solution(string[] input)
+   public Solution(string[] input, int tailSize)
    {
-      Point head = new Point(0, 0);
-      Point tail = new Point(0, 0);
-      TailSteps = new List<Point>() { new Point(0, 0) };
+      Knot head = new Knot(0, 0);
+      Tail tail = new Tail(head, tailSize);
+
+      TailSteps = new List<Knot> { new(0, 0) };
 
       foreach (string inputSentence in input)
       {
@@ -20,7 +19,6 @@ public class Solution
 
          for (int i = 0; i < stepsCount; i++)
          {
-            Point beforeHead = head;
             switch (direction)
             {
                case 'U':
@@ -39,12 +37,9 @@ public class Solution
                   throw new Exception("invalid direction: " + direction);
             }
 
-            if (!tail.IsClose(head))
-            {
-               tail = beforeHead;
-               if (!TailSteps.Contains(tail))
-                  TailSteps.Add(tail);
-            }
+            tail.Move(head);
+            if (!TailSteps.Contains(tail.Last))
+               TailSteps.Add(tail.Last);
          }
       }
    }
