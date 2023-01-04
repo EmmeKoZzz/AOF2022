@@ -33,7 +33,7 @@ public class CpuProgram
     {
         bool printer = _value == (_cycle + 40) % 40  ||
                        _value + 1 == (_cycle + 40) % 40  ||
-                       _value - 1 == (_cycle + 40) % 40 ;
+                       _value + 2 == (_cycle + 40) % 40 ;
 
         CRT += printer ? "#" : ".";
         if (_cycle % 40 == 0) CRT += '\n';
