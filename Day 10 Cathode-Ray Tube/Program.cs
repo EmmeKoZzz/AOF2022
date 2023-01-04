@@ -10,5 +10,12 @@ internal static class App
         var cpu = new CpuProgram();
 
         cpu.SetInstructions(instructions);
+
+        int sumOfSignalStrengths = 0;
+
+        foreach (int eval in new[] { 20, 60, 100, 140, 180, 220 })
+            sumOfSignalStrengths += cpu.GetSigntalStrengthAt(eval);
+
+        Console.WriteLine(sumOfSignalStrengths);
     }
 }
