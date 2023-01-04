@@ -1,9 +1,14 @@
 ﻿namespace Day_10_Cathode_Ray_Tube;
 
-class App
+internal static class App
 {
-    static void Main()
+    private static void Main()
     {
-        Console.WriteLine("Day_10 Initial Commit");
+        var instructions = 
+            new StreamReader("/home/mkz/Coding../AOF2022/Day 10 Cathode-Ray Tube/input.txt").ReadToEnd().Split('\n');
+
+        var cpu = new CpuProgram();
+
+        cpu.SetInstructions(instructions);
     }
 }
