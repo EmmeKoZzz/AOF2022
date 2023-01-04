@@ -17,14 +17,9 @@ public class CpuProgram
             for (var i = 0; i < instruction.Cycles; i++)
             {
                 _cycle++;
-
-                bool printer = _value == (_cycle + 40) % 40  ||
-                               _value + 1 == (_cycle + 40) % 40  ||
-                               _value - 1 == (_cycle + 40) % 40 ;
-
-                CRT += printer ? "#" : ".";
-                if (_cycle % 40 == 0) CRT += '\n';
-
+                
+                RenderCRT();
+                
                 _memory.Add(_cycle, _value);
             }
 
@@ -33,4 +28,14 @@ public class CpuProgram
     }
 
     public int GetSigntalStrengthAt(int cycle) => _memory[cycle] * cycle;
+
+    private void RenderCRT()
+    {
+        bool printer = _value == (_cycle + 40) % 40  ||
+                       _value + 1 == (_cycle + 40) % 40  ||
+                       _value - 1 == (_cycle + 40) % 40 ;
+
+        CRT += printer ? "#" : ".";
+        if (_cycle % 40 == 0) CRT += '\n';
+    }
 }
