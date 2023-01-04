@@ -2,7 +2,7 @@ namespace Day_10_Cathode_Ray_Tube;
 
 public struct Instruction
 {
-    public int Value;
+    public int Value = 0;
     public int Cycles;
     public Instruction(string line)
     {
