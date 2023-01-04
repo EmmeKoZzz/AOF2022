@@ -12,14 +12,16 @@ public class CpuProgram
         foreach (var instructionLine in program)
         {
             var instruction = new Instruction(instructionLine);
-            
+
             for (var i = 0; i < instruction.Cycles; i++)
             {
                 _cycle++;
                 _memory.Add(_cycle, _value);
             }
-            
+
             _value += instruction.Value;
         }
     }
+
+    public int GetSigntalStrengthAt(int cycle) => _memory[cycle] * cycle;
 }
