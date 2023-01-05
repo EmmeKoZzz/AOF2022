@@ -9,8 +9,7 @@ public struct Knot
     // Constructor
     public Knot(int x, int y)
     {
-        X = x;
-        Y = y;
+        (X, Y) = (x, y);
     }
 
     // Actions
@@ -23,11 +22,12 @@ public struct Knot
     public bool StepTo(Knot head)
     {
         if (IsClose(head)) return false;
-        int x = head.X - X;
-        int y = head.Y - Y;
+        int x = head.X - X,
+            y = head.Y - Y;
+
         x /= x != 0 ? Math.Abs(x) : 1;
         y /= y != 0 ? Math.Abs(y) : 1;
-        Step(x,y);
+        Step(x, y);
         return true;
     }
 
@@ -35,15 +35,15 @@ public struct Knot
     {
         if (Equals(p)) return true;
         // N,S,E,W,NE,NW,SE,SW
-        int[] x = { 0, 0, 1, -1, 1, -1, 1, -1 };
-        int[] y = { 1, -1, 0, 0, 1, 1, -1, -1 };
+        int[] x = { 0, 0, 1, -1, 1, -1, 1, -1 },
+            y = { 1, -1, 0, 0, 1, 1, -1, -1 };
 
         for (int i = 0; i < 8; i++)
         {
             Knot pTemp = p;
             pTemp.Step(x[i], y[i]);
 
-            if (this.Equals(pTemp))
+            if (Equals(pTemp))
                 return true;
         }
 
@@ -63,7 +63,7 @@ public struct Knot
 
     private bool Equals(Knot other)
     {
-        return X == other.X && Y == other.Y;
+        return this == other;
     }
 
     public override bool Equals(object? obj)

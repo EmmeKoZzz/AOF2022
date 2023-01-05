@@ -1,4 +1,6 @@
-﻿namespace Day_8_Treetop_Tree_House;
+﻿using System.Diagnostics;
+
+namespace Day_8_Treetop_Tree_House;
 
 static class App
 {
@@ -9,7 +11,15 @@ static class App
       string[] input = reader.ReadToEnd().Split("\n",StringSplitOptions.RemoveEmptyEntries);
       reader.Close();
 
+
+      Stopwatch time = new();
+      time.Start();
       Solution solution = new Solution(input);
+      time.Stop();
+      
+      Console.WriteLine(time.Elapsed.Nanoseconds);
+      Console.WriteLine();
+      
       Console.WriteLine(solution.VisibleTrees);
       Console.WriteLine(solution.HighestTreeScore);
    }
