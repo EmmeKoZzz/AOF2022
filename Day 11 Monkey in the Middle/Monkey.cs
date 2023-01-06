@@ -68,18 +68,22 @@ public class Monkey
     }
 
     // DOINGS
-    public void Play(Monkey[] monkeyList)
+    public int Play(Monkey[] monkeyList)
     {
-        foreach (int _ in Items)
+        int length = Items.Count;
+        for(int i = 0; i < length; i++)
         {
             int newItem = WorryOperations();
             int monkey = ThrowTest(newItem);
              monkeyList[monkey].Items.Add(newItem);
         }
+        
+        return length;
     }
     
     private int WorryOperations()
     {
+        int temp = _worryIncrementValue;
         if (_worryIncrementValue == -1) _worryIncrementValue = Items[0];
         
         int item = Items[0];
@@ -95,6 +99,8 @@ public class Monkey
                 break;
             default: throw new Exception("invalid operation");
         }
+
+        _worryIncrementValue = temp;
         return item/3;
     }
 
