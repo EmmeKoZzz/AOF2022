@@ -34,7 +34,8 @@ public class Monkey
         }
 
     }
-
+    
+    // CONSTRUCTOR METHODS
     private void SetItems(string info)
     {
         string[] items = info.Split(',');
@@ -67,16 +68,38 @@ public class Monkey
     }
 
     // DOINGS
-    public void WorryIncreaser()
+    public void Play(Monkey[] monkeyList)
     {
+        foreach (int _ in Items)
+        {
+            int newItem = WorryOperations();
+            int monkey = ThrowTest(newItem);
+             monkeyList[monkey].Items.Add(newItem);
+        }
+    }
+    
+    private int WorryOperations()
+    {
+        if (_worryIncrementValue == -1) _worryIncrementValue = Items[0];
+        
+        int item = Items[0];
+        Items.RemoveAt(0);
+        
+        switch (_worryIncrementOperator)
+        {
+            case "+":
+                item += _worryIncrementValue;
+                break;
+            case "*":
+                item *= _worryIncrementValue;
+                break;
+            default: throw new Exception("invalid operation");
+        }
+        return item/3;
     }
 
-    public void Relax()
-    {
-    }
-
-    public int ThrowTest()
-    {
-        return 0;
+    private int ThrowTest(int worryLevel)
+    { 
+        return worryLevel % _divisibleByTest == 0 ? _testTrue : _testFalse;
     }
 }
