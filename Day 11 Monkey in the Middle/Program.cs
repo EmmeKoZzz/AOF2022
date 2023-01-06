@@ -4,6 +4,13 @@ class App
 {
     static void Main()
     {
-        Console.Write("init day 11");
+        string[] monkeysInfo = new StreamReader("/home/mkz/Coding../AOF2022/Day 11 Monkey in the Middle/input.txt")
+            .ReadToEnd().Split("\n\n");
+        
+        Monkey[] monkeys = new Monkey[monkeysInfo.Length];
+        
+        for (int i = 0; i < monkeysInfo.Length; i++)
+            monkeys[i] = new Monkey(monkeysInfo[i]);
+        
     }
 }
