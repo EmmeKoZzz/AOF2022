@@ -13,6 +13,36 @@ public class Monkey
     public Monkey(string monkeyInfo)
     {
         string[] monkeyArgs = monkeyInfo.Split('\n');
+        
+        for(int i = 1 ; i < monkeyArgs.Length ; i++)
+        {
+            string[] args = monkeyArgs[i].Split(':', StringSplitOptions.TrimEntries);
+            switch (args[0])
+            {
+                case "Starting items":
+                    SetItems(args[1]);
+                    break;
+                case "Operation":
+                    SetWorryIncrement(args[1]);
+                    break;
+                default:
+                    SetTesting(args[1]);
+                    break;
+            }
+        }
+
+    }
+
+    private void SetItems(string info)
+    {
+    }
+    
+    private void SetWorryIncrement(string info)
+    {
+    }
+    
+    private void SetTesting(string info)
+    {
     }
 
     // DOINGS
