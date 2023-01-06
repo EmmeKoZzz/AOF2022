@@ -4,7 +4,8 @@ public class Monkey
 {
     // ATTRIBUTES
     public List<int> Items { get; private set; }
-    private Dictionary<string, int> _worryIncrement;
+    private string _worryIncrementOperator;
+    private int _worryIncrementValue;
     private int _divisibleByTest;
     private int _testTrue;
     private int _testFalse;
@@ -12,6 +13,7 @@ public class Monkey
     // CONSTRUCTOR
     public Monkey(string monkeyInfo)
     {
+        Items = new List<int>();
         string[] monkeyArgs = monkeyInfo.Split('\n');
         
         for(int i = 1 ; i < monkeyArgs.Length ; i++)
@@ -26,7 +28,7 @@ public class Monkey
                     SetWorryIncrement(args[1]);
                     break;
                 default:
-                    SetTesting(args[1]);
+                    SetTesting(args);
                     break;
             }
         }
@@ -35,14 +37,33 @@ public class Monkey
 
     private void SetItems(string info)
     {
+        string[] items = info.Split(',');
+        
+        foreach (string item in items)
+            Items.Add(int.Parse(item));
     }
     
     private void SetWorryIncrement(string info)
     {
+        string[] realInfo = info.Replace("new = old ","").Split(' ');
+        _worryIncrementOperator = realInfo[0];
+        _worryIncrementValue = realInfo[1]== "old" ? -1 : int.Parse(realInfo[1]);
     }
     
-    private void SetTesting(string info)
+    private void SetTesting(string[] info)
     {
+        switch (info[0])
+        {
+            case "Test":
+                _divisibleByTest = int.Parse(info[1].Replace("divisible by ",""));
+                break;
+            case "If true":
+                _testTrue = int.Parse(info[1].Replace("throw to monkey ", ""));
+                break;
+            case "If false":
+                _testFalse = int.Parse(info[1].Replace("throw to monkey ", ""));
+                break;
+        }
     }
 
     // DOINGS
