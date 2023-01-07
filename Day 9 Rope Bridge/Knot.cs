@@ -60,15 +60,10 @@ public struct Knot
     {
         return !(p1.X == p2.X && p1.Y == p2.Y);
     }
-
-    private bool Equals(Knot other)
-    {
-        return this == other;
-    }
-
+    
     public override bool Equals(object? obj)
     {
-        return obj is Knot other && Equals(other);
+        return obj is Knot other && this == other;
     }
 
     public override int GetHashCode()

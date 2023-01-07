@@ -8,20 +8,32 @@ class App
             .ReadToEnd().Split("\n\n");
 
         Monkey[] monkeys = new Monkey[monkeysInfo.Length];
-        int[] monkeysInspections = new int[monkeysInfo.Length];
 
         for (int i = 0; i < monkeysInfo.Length; i++)
             monkeys[i] = new Monkey(monkeysInfo[i]);
 
-        for (int i = 0; i < 20; i++)
-            Round(monkeys, monkeysInspections);
+       // DoRounds(monkeys, 20, 3);
+        
+        
+        DoRounds(monkeys, 20, 1);
     }
 
-    static void Round(Monkey[] monkeys, int[] monkeysInspections)
+    static void Round(Monkey[] monkeys, int[] monkeysInspections, int relief)
     {
         for (int i = 0; i < monkeys.Length; i++)
         {
-            monkeysInspections[i] += monkeys[i].Play(monkeys);
+            monkeysInspections[i] += monkeys[i].Play(monkeys, relief);
         }
+    }
+
+    static void DoRounds(Monkey[] monkeys, int numRounds, int relief)
+    {
+        int[] monkeysInspections = new int[monkeys.Length];
+        for (int i = 0; i < numRounds; i++)
+            Round(monkeys, monkeysInspections, relief);
+
+        Array.Sort(monkeysInspections);
+        Console.WriteLine(monkeysInspections[^2] *
+                          monkeysInspections[^1]); // ^ this means index from the end and start with 1
     }
 }

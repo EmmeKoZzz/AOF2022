@@ -3,17 +3,17 @@ namespace Day_11_Monkey_in_the_Middle;
 public class Monkey
 {
     // ATTRIBUTES
-    public List<int> Items { get; private set; }
-    private string _worryIncrementOperator;
-    private int _worryIncrementValue;
+    public List<long> Items { get; private set; }
+    private string _worryIncrementOperator = "";
+    private long _worryIncrementValue;
     private int _divisibleByTest;
     private int _testTrue;
     private int _testFalse;
-    
+
     // CONSTRUCTOR
     public Monkey(string monkeyInfo)
     {
-        Items = new List<int>();
+        Items = new List<long>();
         string[] monkeyArgs = monkeyInfo.Split('\n');
         
         for(int i = 1 ; i < monkeyArgs.Length ; i++)
@@ -68,12 +68,12 @@ public class Monkey
     }
 
     // DOINGS
-    public int Play(Monkey[] monkeyList)
+    public int Play(Monkey[] monkeyList, int relief)
     {
         int length = Items.Count;
         for(int i = 0; i < length; i++)
         {
-            int newItem = WorryOperations();
+            long newItem = WorryOperations(relief);
             int monkey = ThrowTest(newItem);
              monkeyList[monkey].Items.Add(newItem);
         }
@@ -81,12 +81,12 @@ public class Monkey
         return length;
     }
     
-    private int WorryOperations()
+    private long WorryOperations(int relief)
     {
-        int temp = _worryIncrementValue;
+        long temp = _worryIncrementValue;
         if (_worryIncrementValue == -1) _worryIncrementValue = Items[0];
         
-        int item = Items[0];
+        var item = Items[0];
         Items.RemoveAt(0);
         
         switch (_worryIncrementOperator)
@@ -101,10 +101,10 @@ public class Monkey
         }
 
         _worryIncrementValue = temp;
-        return item/3;
+        return item/relief;
     }
 
-    private int ThrowTest(int worryLevel)
+    private int ThrowTest(long worryLevel)
     { 
         return worryLevel % _divisibleByTest == 0 ? _testTrue : _testFalse;
     }
