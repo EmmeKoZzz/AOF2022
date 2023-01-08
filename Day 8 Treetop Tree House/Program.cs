@@ -17,7 +17,7 @@ static class App
       Solution solution = new Solution(input);
       time.Stop();
       
-      Console.WriteLine(time.Elapsed.Nanoseconds);
+      Console.WriteLine(time.Elapsed.TotalSeconds);
       Console.WriteLine();
       
       Console.WriteLine(solution.VisibleTrees);

@@ -47,10 +47,11 @@ public class Solution
       int treeScore = 1;
       for (int i = 0; i < Cross.Directions; i++)
       {
+         checkVisibility = true;
          int x = currentTree.X + Cross.Horizontal[i];
          int y = currentTree.Y + Cross.Vertical[i];
          int edge = Cross.Horizontal[i] + Cross.Vertical[i] > 0 ? _treeMap.Length : -1;
-         bool visibility = true;
+         
          int count = 0;
 
          while (x != edge && y != edge)
@@ -58,7 +59,7 @@ public class Solution
             count++;
             if (_treeMap[y, x] >= currentTree.Height)
             {
-               visibility = false;
+               checkVisibility = false;
                break;
             }
 
@@ -67,8 +68,6 @@ public class Solution
          }
 
          treeScore *= count;
-
-         if (visibility) checkVisibility = true;
       }
 
       if (treeScore > HighestTreeScore)
