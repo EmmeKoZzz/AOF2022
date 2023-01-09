@@ -2,80 +2,79 @@ namespace Day_8_Treetop_Tree_House;
 
 internal struct Tree
 {
-   public readonly int Height;
-   public readonly int X;
-   public readonly int Y;
+    public readonly int Height;
+    public readonly int X;
+    public readonly int Y;
 
-   public Tree(int height, int row, int col)
-   {
-      Height = height;
-      X = col;
-      Y = row;
-   }
+    public Tree(int height, int row, int col)
+    {
+        Height = height;
+        X = col;
+        Y = row;
+    }
 }
+
 internal struct Cross
 {
-   // N, E, S, W
-   public static int[] Vertical => new[] { -1, 0, 1, 0 };
-   public static int[] Horizontal => new[] { 0, 1, 0, -1 };
-   public static int Directions => 4;
+    // N, E, S, W
+    public static int[] Vertical => new[] { -1, 0, 1, 0 };
+    public static int[] Horizontal => new[] { 0, 1, 0, -1 };
+    public static int Directions => 4;
 }
 
 public class Solution
 {
-   private readonly Grid _treeMap;
-   public readonly int VisibleTrees;
-   public int HighestTreeScore;
+    private readonly string[] _treeMap;
+    public readonly int VisibleTrees;
+    public int HighestTreeScore;
 
-   public Solution(string[] input)
-   {
-      _treeMap = new Grid(input);
-      for (int row = 1; row < _treeMap.Length - 1; row++)
-      for (int col = 1; col < _treeMap.Length - 1; col++)
-      {
-         Tree cursor = new Tree(_treeMap[row, col], row, col);
-         if (VisibleTree(cursor))
-            VisibleTrees++;
-      }
+    public Solution(string[] input)
+    {
+        _treeMap = input;
+        for (int row = 1; row < _treeMap.Length - 1; row++)
+        for (int col = 1; col < _treeMap.Length - 1; col++)
+        {
+            Tree cursor = new Tree(_treeMap[row][col]-48, row, col);
+            
+            if (VisibleTree(cursor))
+                VisibleTrees++;
+        }
 
-      VisibleTrees += _treeMap.Length * 4 - 4;
-   }
+        VisibleTrees += _treeMap.Length * 4 - 4;
+    }
 
-   private bool VisibleTree(Tree currentTree)
-   {
-      bool checkVisibility = false;
-      int treeScore = 1;
-      for (int i = 0; i < Cross.Directions; i++)
-      {
-         checkVisibility = true;
-         int x = currentTree.X + Cross.Horizontal[i];
-         int y = currentTree.Y + Cross.Vertical[i];
-         int edge = Cross.Horizontal[i] + Cross.Vertical[i] > 0 ? _treeMap.Length : -1;
-         
-         int count = 0;
+    private bool VisibleTree(Tree currentTree)
+    {
+        bool checkVisibility = false;
+        int treeScore = 1;
+        for (int i = 0; i < Cross.Directions; i++)
+        {
+            int x = currentTree.X + Cross.Horizontal[i];
+            int y = currentTree.Y + Cross.Vertical[i];
+            var visibility = true;
+            int edge = Cross.Horizontal[i] + Cross.Vertical[i] > 0 ? _treeMap.Length : -1;
 
-         while (x != edge && y != edge)
-         {
-            count++;
-            if (_treeMap[y, x] >= currentTree.Height)
+            int count = 0;
+
+            while (x != edge && y != edge)
             {
-               checkVisibility = false;
-               break;
+                count++;
+                if (_treeMap[y][x]-48 >= currentTree.Height)
+                {
+                    visibility = false;
+                    break;
+                }
+
+                x += Cross.Horizontal[i];
+                y += Cross.Vertical[i];
             }
 
-            x += Cross.Horizontal[i];
-            y += Cross.Vertical[i];
-         }
+            treeScore *= count;
+            checkVisibility = visibility || checkVisibility;
+        }
 
-         treeScore *= count;
-      }
+        HighestTreeScore = treeScore > HighestTreeScore ? treeScore : HighestTreeScore;
 
-      if (treeScore > HighestTreeScore)
-         HighestTreeScore = treeScore;
-
-      if (checkVisibility)
-         return true;
-
-      return false;
-   }
+        return checkVisibility;
+    }
 }

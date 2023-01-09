@@ -3,9 +3,9 @@ namespace Day_11_Monkey_in_the_Middle;
 public class Monkey
 {
     // ATTRIBUTES
-    public List<long> Items { get; private set; }
+    public List<string> Items { get; private set; }
     private string _worryIncrementOperator = "";
-    private long _worryIncrementValue;
+    private string _worryIncrementValue = "0";
     private int _divisibleByTest;
     private int _testTrue;
     private int _testFalse;
@@ -13,7 +13,7 @@ public class Monkey
     // CONSTRUCTOR
     public Monkey(string monkeyInfo)
     {
-        Items = new List<long>();
+        Items = new List<string>();
         string[] monkeyArgs = monkeyInfo.Split('\n');
         
         for(int i = 1 ; i < monkeyArgs.Length ; i++)
@@ -39,16 +39,16 @@ public class Monkey
     private void SetItems(string info)
     {
         string[] items = info.Split(',');
-        
+
         foreach (string item in items)
-            Items.Add(int.Parse(item));
+            Items.Add(item);
     }
     
     private void SetWorryIncrement(string info)
     {
         string[] realInfo = info.Replace("new = old ","").Split(' ');
         _worryIncrementOperator = realInfo[0];
-        _worryIncrementValue = realInfo[1]== "old" ? -1 : int.Parse(realInfo[1]);
+        _worryIncrementValue = realInfo[1]== "old" ? "-1" : realInfo[1];
     }
     
     private void SetTesting(string[] info)
@@ -73,7 +73,7 @@ public class Monkey
         int length = Items.Count;
         for(int i = 0; i < length; i++)
         {
-            long newItem = WorryOperations(relief);
+            string newItem = WorryOperations(relief);
             int monkey = ThrowTest(newItem);
              monkeyList[monkey].Items.Add(newItem);
         }
@@ -81,10 +81,10 @@ public class Monkey
         return length;
     }
     
-    private long WorryOperations(int relief)
+    private string WorryOperations(int relief)
     {
-        long temp = _worryIncrementValue;
-        if (_worryIncrementValue == -1) _worryIncrementValue = Items[0];
+        string temp = _worryIncrementValue;
+        if (_worryIncrementValue == "-1") _worryIncrementValue = Items[0];
         
         var item = Items[0];
         Items.RemoveAt(0);
@@ -92,20 +92,21 @@ public class Monkey
         switch (_worryIncrementOperator)
         {
             case "+":
-                item += _worryIncrementValue;
+                
+
                 break;
             case "*":
-                item *= _worryIncrementValue;
+                //item *= _worryIncrementValue;
                 break;
             default: throw new Exception("invalid operation");
         }
 
         _worryIncrementValue = temp;
-        return item/relief;
+        return item;///relief;
     }
 
-    private int ThrowTest(long worryLevel)
-    { 
-        return worryLevel % _divisibleByTest == 0 ? _testTrue : _testFalse;
+    private int ThrowTest(string worryLevel)
+    {
+        return 1;//worryLevel % _divisibleByTest == 0 ? _testTrue : _testFalse;
     }
 }

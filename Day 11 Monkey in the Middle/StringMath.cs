@@ -88,7 +88,7 @@ public static class StringMath
 
         return result;
     }
-    
+
     public static string Multiply(string xS, string yS)
     {
         Valid(xS);
@@ -111,7 +111,8 @@ public static class StringMath
             sumToMul[i] = zeros + MulOne(bigger, lesser[i]);
         }
 
-        string result = Addition(ToIntArray(sumToMul[0]), ToIntArray(sumToMul[1]));
+        string result = Addition(Longer(ToIntArray(sumToMul[0]), ToIntArray(sumToMul[1])),
+            Littest(ToIntArray(sumToMul[0]), ToIntArray(sumToMul[1])));
 
         for (int i = 2; i < sumToMul.Length; i++)
             result = Addition(Longer(ToIntArray(result), ToIntArray(sumToMul[i])),
