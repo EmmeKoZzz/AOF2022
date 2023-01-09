@@ -31,24 +31,7 @@ public struct Knot
         return true;
     }
 
-    public bool IsClose(Knot p)
-    {
-        if (Equals(p)) return true;
-        // N,S,E,W,NE,NW,SE,SW
-        int[] x = { 0, 0, 1, -1, 1, -1, 1, -1 },
-            y = { 1, -1, 0, 0, 1, 1, -1, -1 };
-
-        for (int i = 0; i < 8; i++)
-        {
-            Knot pTemp = p;
-            pTemp.Step(x[i], y[i]);
-
-            if (Equals(pTemp))
-                return true;
-        }
-
-        return false;
-    }
+    public bool IsClose(Knot p) => Math.Sqrt(Math.Pow(X-p.X,2)+Math.Pow(Y-p.Y,2)) <= Math.Sqrt(2);
 
     // Equality Propeties
     public static bool operator ==(Knot p1, Knot p2)
